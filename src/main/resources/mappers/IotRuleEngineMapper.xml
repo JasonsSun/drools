@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.drools.mapper.IotRuleEngineMapper" >
+  <resultMap id="BaseResultMap" type="com.example.drools.vo.IotRuleEngine" >
+    <constructor >
+      <idArg column="iotengine_rule" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="iotengine_package" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="iotengine_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="iotengine_typecontent" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="iotengine_ruleName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="iotengine_ruleType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="iotengine_ruleCondition" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="iotengine_ruleResult" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="iotengine_isValid" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="iotengine_description" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from iot_rule_engine
+    where iotengine_rule = #{iotengineRule,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.drools.vo.IotRuleEngine"  >
+    insert into iot_rule_engine ( iotengine_package, iotengine_type,
+      iotengine_typecontent, iotengine_ruleName, 
+      iotengine_ruleType, iotengine_ruleCondition, 
+      iotengine_isValid,iotengine_ruleResult,
+      iotengine_description)
+    values ( #{iotenginePackage,jdbcType=VARCHAR}, #{iotengineType,jdbcType=VARCHAR},
+      #{iotengineTypecontent,jdbcType=VARCHAR}, #{iotengineRulename,jdbcType=VARCHAR}, 
+      #{iotengineRuletype,jdbcType=VARCHAR}, #{iotengineRulecondition,jdbcType=VARCHAR}, 
+      #{iotengineIsvalid,jdbcType=INTEGER},#{iotengineRuleresult,jdbcType=VARCHAR},
+      #{iotengineDescription,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.drools.vo.IotRuleEngine" >
+    update iot_rule_engine
+    set iotengine_package = #{iotenginePackage,jdbcType=VARCHAR},
+      iotengine_type = #{iotengineType,jdbcType=VARCHAR},
+      iotengine_typecontent = #{iotengineTypecontent,jdbcType=VARCHAR},
+      iotengine_ruleName = #{iotengineRulename,jdbcType=VARCHAR},
+      iotengine_ruleType = #{iotengineRuletype,jdbcType=VARCHAR},
+      iotengine_ruleCondition = #{iotengineRulecondition,jdbcType=VARCHAR},
+      iotengine_ruleResult = #{iotengineRuleresult,jdbcType=VARCHAR},
+      iotengine_isValid = #{iotengineIsvalid,jdbcType=INTEGER},
+      iotengine_description = #{iotengineDescription,jdbcType=VARCHAR}
+    where iotengine_rule = #{iotengineRule,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select iotengine_rule, iotengine_package, iotengine_type, iotengine_typecontent, 
+    iotengine_ruleName, iotengine_ruleType, iotengine_ruleCondition, iotengine_ruleResult, 
+    iotengine_isValid, iotengine_description
+    from iot_rule_engine
+    where iotengine_rule = #{iotengineRule,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select iotengine_rule, iotengine_package, iotengine_type, iotengine_typecontent, 
+    iotengine_ruleName, iotengine_ruleType, iotengine_ruleCondition, iotengine_ruleResult, 
+    iotengine_isValid, iotengine_description
+    from iot_rule_engine
+  </select>
+</mapper>
